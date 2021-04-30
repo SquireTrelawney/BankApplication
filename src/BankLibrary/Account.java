@@ -23,7 +23,7 @@ public abstract class Account implements IAccount {
     }
 
     // Текущая сумма на счету
-    public decimal Sum { get; private set; }
+    public double Sum { get; private set; }
     // Процент начислений
     public int Percentage { get; private set; }
     // Уникальный идентификатор счета
