@@ -1,49 +1,43 @@
 package BankLibrary;
 
 public abstract class Account implements IAccount {
-    //Событие, возникающее при выводе денег
-    protected internal event AccountStateHandler Withdrawed;
-    // Событие возникающее при добавление на счет
-    protected internal event AccountStateHandler Added;
-    // Событие возникающее при открытии счета
-    protected internal event AccountStateHandler Opened;
-    // Событие возникающее при закрытии счета
-    protected internal event AccountStateHandler Closed;
-    // Событие возникающее при начислении процентов
-    protected internal event AccountStateHandler Calculated;
 
+    public  IHandler Opened;
+//
+//
     static int counter = 0;
-    protected int _days = 0; // время с момента открытия счета
-
+//    protected int _days = 0; // время с момента открытия счета
+//
     public Account(double sum, int percentage)
     {
         this.sum = sum;
-        Percentage = percentage;
+//        Percentage = percentage;
         Id = ++counter;
     }
-
-    // Текущая сумма на счету
-    public double Sum { get; private set; }
-    // Процент начислений
-    public int Percentage { get; private set; }
-    // Уникальный идентификатор счета
-    public int Id { get; private set; }
-    // вызов событий
-    private void CallEvent(IEvent e, AccountS   tateHandler handler)
+//
+//    // Текущая сумма на счету
+    public double sum;
+//    // Процент начислений
+//    public int Percentage { get; private set; }
+//    // Уникальный идентификатор счета
+    public int Id;
+//    // вызов событий
+//
+    private void CallEvent(AccountEventArgs e,IHandler handler)
     {
         if (e != null)
-            handler?.Invoke(this, e);
+            handler.invoke(e);
     }
     // вызов отдельных событий. Для каждого события определяется свой витуальный метод
-    protected  void OnOpened(IEvent e)
+    protected  void OnOpened(AccountEventArgs e)
     {
         CallEvent(e, Opened);
     }
 
     // открытие счета
-    protected internal virtual void Open()
+    public void Open()
     {
-        OnOpened(new AccountEventArgs($"Открыт новый счет! Id счета: {Id}", Sum));
+        OnOpened(new AccountEventArgs("Открыт новый счет! Id счета: {Id}", sum));
     }
 
 }

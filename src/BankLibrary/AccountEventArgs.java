@@ -1,6 +1,7 @@
 package BankLibrary;
 
-public class AccountStateHandler implements IHandler{
+public class AccountEventArgs
+{
     // Сообщение
     private String message;
     // Сумма, на которую изменился счет
@@ -10,13 +11,14 @@ public class AccountStateHandler implements IHandler{
         return message;
     }
 
+
     public double getSum() {
         return sum;
     }
-    @Override
-    public void accountEventArgs(String message, double sum) {
+
+
+    public AccountEventArgs(String message, double sum) {
         this.message = message;
         this.sum = sum;
     }
-
 }
