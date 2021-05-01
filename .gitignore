@@ -4,7 +4,7 @@
 out/
 /build/
 BankApplication.iml
-
+test
 # Ignore Gradle GUI config
 gradle-app.setting
 
